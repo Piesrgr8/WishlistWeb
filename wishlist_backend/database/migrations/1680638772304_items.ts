@@ -11,7 +11,7 @@ export default class extends BaseSchema {
             table.string('desc')
             //these add foreign keys for users and topics
             table.integer('user_id').unsigned().notNullable().references('users.id')
-            table.integer('wishlist_id').unsigned().notNullable().references('wishlist.id')
+            table.integer('wishlist_id').unsigned().notNullable().references('wishlists.id')
             table.timestamp('created_at', { useTz: true }).defaultTo(this.now())
             table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
         })
