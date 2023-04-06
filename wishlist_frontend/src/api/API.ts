@@ -15,6 +15,7 @@ export const getCurrentUserInfoFromLocalStorage = (): CurrentUserInfo | null => 
         return null;
     }
     const json = JSON.parse(info) as CurrentUserInfo;
+    console.log(json);
     return json;
 };
 
