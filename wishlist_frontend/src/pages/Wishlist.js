@@ -14,7 +14,13 @@ export default function Wishlist({getToken}) {
                 setItems(e.data.items);
                 setWishlist(e.data);
             });
-    }, [getToken]);
+    }, [getToken, id]);
+
+    const getThumb = ({url}) => {
+        axios.get(url).then((e) => {
+            console.log(e)
+        })
+    }
 
     return (
         <div>
@@ -28,7 +34,8 @@ export default function Wishlist({getToken}) {
                                 </Link> */}
                             {item.name}
                         </h2>
-                        <p>{item.description}</p>
+                        <img src={getThumb(item.url)}/>
+                        <p>{item.desc}</p>
                     </li>
                 );
             })}
