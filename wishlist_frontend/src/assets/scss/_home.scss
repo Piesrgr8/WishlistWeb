@@ -1,0 +1,22 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    .wishlist-lists {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        justify-content: space-evenly;
+        .wishlist-item {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            img {
+                width: 300px;
+                height: 250px;
+            }
+            #namedesc {
+                position: absolute;
+                justify-content: center;
+            }
+        }
+    }
+}
