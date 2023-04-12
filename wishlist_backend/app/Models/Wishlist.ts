@@ -4,27 +4,30 @@ import User from 'App/Models/User'
 import Item from 'App/Models/Item'
 
 export default class Wishlist extends BaseModel {
-    @column({ isPrimary: true })
-    public id: number
+  @column({ isPrimary: true })
+  public id: number
 
-    @column()
-    public name: string
+  @column()
+  public name: string
 
-    @column()
-    public description: string
+  @column()
+  public url: string
 
-    @column()
-    public userId: number
+  @column()
+  public description: string
 
-    @column.dateTime({ autoCreate: true })
-    public createdAt: DateTime
+  @column()
+  public userId: number
 
-    @column.dateTime({ autoCreate: true, autoUpdate: true })
-    public updatedAt: DateTime
+  @column.dateTime({ autoCreate: true })
+  public createdAt: DateTime
 
-    @belongsTo(() => User, { serializeAs: 'user' })
-    public user: BelongsTo<typeof User>
+  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  public updatedAt: DateTime
 
-    @hasMany(() => Item)
-    public items: HasMany<typeof Item>
+  @belongsTo(() => User, { serializeAs: 'user' })
+  public user: BelongsTo<typeof User>
+
+  @hasMany(() => Item)
+  public items: HasMany<typeof Item>
 }

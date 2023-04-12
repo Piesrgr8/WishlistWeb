@@ -13,28 +13,26 @@ export default function Home({getToken}) {
     }, [getToken]);
 
     return (
-        <div>
+        <div className="home">
             <h1>HOME</h1>
-            {// eslint-disable-next-line
-            wishlists.map((wishlist) => {
-                if (tokenString.user.id === wishlist.user_id) {
-                return (
-                    <li key={wishlist.id}>
-                        <h2>
-                            <Link to={`/wishlist/${wishlist.id}`} className="dark">
-                                {wishlist.name}
-                            </Link>
-                        </h2>
-                        
-                        <p>{wishlist.description}</p>
-                        <div className="author">
-                            <span className="label">created by</span>
-                            <span className="author-email">{wishlist.user.email}</span>
-                        </div>
-                    </li>
-                );
-            }
+            <div className="wishlist-lists">
+                {// eslint-disable-next-line
+                wishlists.map((wishlist) => {
+                    if (tokenString.user.id === wishlist.user_id) {
+                    return (
+                        <Link to={`/wishlist/${wishlist.id}`} className="dark">
+                            <li className="wishlist-item" key={wishlist.id}>
+                                <img src={wishlist.url} alt="Wishlist Banner"/>
+                                <span id="namedesc">
+                                    <h2>{wishlist.name}</h2>
+                                    <p>{wishlist.description}</p>
+                                </span>
+                            </li>
+                        </Link>
+                    );
+                }
             })}
+            </div>
         </div>
     );
 }

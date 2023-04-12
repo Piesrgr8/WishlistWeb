@@ -9,6 +9,7 @@ export default class extends BaseSchema {
             table.increments('id')
             //create a name column
             table.string('name').unique().notNullable()
+            table.string('url').unique()
             //create a column for description
             table.text('description').notNullable()
             //create a reference to the user table

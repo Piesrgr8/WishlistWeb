@@ -16,25 +16,28 @@ export default function Wishlist({getToken}) {
             });
     }, [getToken, id]);
 
-    const getThumb = ({url}) => {
-        axios.get(url).then((e) => {
+    const getThumb = async (url) => {
+        var header = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
+            "adapter": ["xhr", "http", "https"]
+        }
+        console.log(url)
+        await axios.get(url, header).then((e) => {
             console.log(e)
         })
     }
 
     return (
-        <div>
+        <div className="wishlist">
             <h1>{wishlist.name}</h1>
             {items.map((item) => {
                 return (
                     <li key={item.id}>
                         <h2>
-                            {/* <Link to={`/wishlists/${wishlist.id}`} className="dark">
-                                    {wishlist.name}
-                                </Link> */}
                             {item.name}
                         </h2>
-                        <img src={getThumb(item.url)}/>
+                        <p>{item.url}</p>
+                        <img src={getThumb("https://www.bsu.edu/")}/>
                         <p>{item.desc}</p>
                     </li>
                 );
