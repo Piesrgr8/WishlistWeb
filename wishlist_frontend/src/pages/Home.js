@@ -16,22 +16,24 @@ export default function Home({getToken}) {
         <div className="home">
             <h1>HOME</h1>
             <div className="wishlist-lists">
-                {// eslint-disable-next-line
-                wishlists.map((wishlist) => {
-                    if (tokenString.user.id === wishlist.user_id) {
-                    return (
-                        <Link to={`/wishlist/${wishlist.id}`} className="dark">
-                            <li className="wishlist-item" key={wishlist.id}>
-                                <img src={wishlist.url} alt="Wishlist Banner"/>
-                                <span id="namedesc">
-                                    <h2>{wishlist.name}</h2>
-                                    <p>{wishlist.description}</p>
-                                </span>
-                            </li>
-                        </Link>
-                    );
+                {
+                    // eslint-disable-next-line
+                    wishlists.map((wishlist) => {
+                        if (tokenString.user.id === wishlist.user_id) {
+                            return (
+                                <Link to={`/wishlist/${wishlist.id}`} className="dark">
+                                    <li className="wishlist-item" key={wishlist.id}>
+                                        <img src={wishlist.url} alt="Wishlist Banner" />
+                                        <span id="namedesc">
+                                            <h2>{wishlist.name}</h2>
+                                            <p>{wishlist.description}</p>
+                                        </span>
+                                    </li>
+                                </Link>
+                            );
+                        }
+                    })
                 }
-            })}
             </div>
         </div>
     );

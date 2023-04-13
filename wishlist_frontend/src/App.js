@@ -5,7 +5,7 @@ import Login from "./pages/Login";
 import useToken from "./components/useToken";
 import Wishlist from "./pages/Wishlist";
 import Footer from "./components/Footer";
-import Header from "./components/Header"
+import Header from "./components/Header";
 
 function App() {
     const {token, setToken} = useToken();
@@ -17,14 +17,14 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <Header/>
+                <Header />
                 <Routes>
                     <Route path="/" element={<Home getToken={token} />} />
                     <Route path="/login" element={<Login setToken={setToken} />} />
                     <Route path="/wishlist/:id" element={<Wishlist getToken={token} />} />
                 </Routes>
             </div>
-            <Footer/>
+            <Footer />
         </Router>
     );
 }
