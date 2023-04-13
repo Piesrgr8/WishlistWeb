@@ -21,8 +21,8 @@ export default function Home({getToken}) {
                     wishlists.map((wishlist) => {
                         if (tokenString.user.id === wishlist.user_id) {
                             return (
-                                <Link to={`/wishlist/${wishlist.id}`} className="dark">
-                                    <li className="wishlist-item" key={wishlist.id}>
+                                <Link to={`/wishlist/${wishlist.id}`} key={wishlist.id} className="dark">
+                                    <li className="wishlist-item">
                                         <img src={wishlist.url} alt="Wishlist Banner" />
                                         <span id="namedesc">
                                             <h2>{wishlist.name}</h2>
