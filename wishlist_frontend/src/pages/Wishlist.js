@@ -45,10 +45,13 @@ export default function Wishlist({getToken}) {
         }
     };
 
+    const bannerUrl = () => {
+        return wishlist.url
+    }
+
     return (
         <div className="wishlist">
-            <div className="wishlist-banner">
-                <img src={wishlist.url} alt="" />
+            <div className="wishlist-banner" style={{backgroundImage: `url('${bannerUrl()}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
                 <h1>{wishlist.name}</h1>
             </div>
             <div className="item-container">
