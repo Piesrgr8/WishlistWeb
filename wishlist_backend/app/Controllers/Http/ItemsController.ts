@@ -37,30 +37,30 @@ export default class itemsController {
         return item
     }
 
-    public async show({params}: HttpContextContract) {
-        const item = await Item.findOrFail(params.id);
-        await item.load("user");
-        await item.load("wishlist");
-        return item;
+    public async show({ params }: HttpContextContract) {
+        const item = await Item.findOrFail(params.id)
+        await item.load('user')
+        await item.load('wishlist')
+        return item
     }
 
-    public async update({request, params, bouncer}: HttpContextContract) {
+    public async update({ request, params, bouncer }: HttpContextContract) {
         //get the item
-        const item = await Item.findOrFail(params.id);
+        const item = await Item.findOrFail(params.id)
         const itemSchema = schema.create({
-        name: schema.string({trim: true}, [rules.minLength(5), rules.maxLength(70)]),
-        });
-        const itemPayload = await request.validate({schema: itemSchema});
-        await bouncer.authorize("updateItem", item);
-        item.name = itemPayload.name;
-        await item.save();
-        return item;
+            name: schema.string({ trim: true }, [rules.minLength(5), rules.maxLength(70)]),
+        })
+        const itemPayload = await request.validate({ schema: itemSchema })
+        await bouncer.authorize('updateItem', item)
+        item.name = itemPayload.name
+        await item.save()
+        return item
     }
 
-    public async destroy({params, bouncer}: HttpContextContract) {
-        const item = await Item.findOrFail(params.id);
-        await bouncer.authorize("deleteItem", item);
-        await item.delete();
-        return item;
+    public async destroy({ params, bouncer }: HttpContextContract) {
+        const item = await Item.findOrFail(params.id)
+        await bouncer.authorize('deleteItem', item)
+        await item.delete()
+        return item
     }
 }

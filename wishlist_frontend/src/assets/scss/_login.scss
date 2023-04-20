@@ -1,0 +1,28 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        font-size: 30px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        input {
+            padding: 10px;
+            width: 20em;
+        }
+        #email {
+            margin-bottom: 30px;
+        }
+
+        #password {
+            margin-bottom: 30px;
+        }
+
+        #submit {
+            margin: auto;
+        }
+    }
+}

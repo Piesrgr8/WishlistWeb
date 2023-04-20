@@ -23,7 +23,7 @@ import UsersController from 'App/Controllers/Http/UsersController'
 
 Route.resource('users', 'UsersController').apiOnly().except(['destroy', 'update', 'index'])
 Route.resource('wishlists', 'WishlistsController').apiOnly().middleware({ '*': 'auth' })
-Route.resource("items", "ItemsController").apiOnly().except(["index"]).middleware({"*": "auth"})
+Route.resource('items', 'ItemsController').apiOnly().except(['index']).middleware({ '*': 'auth' })
 
 Route.post('/users/login', (ctx) => {
     return new UsersController().login(ctx)

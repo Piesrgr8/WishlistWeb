@@ -65,6 +65,32 @@ body {
   transition-duration: 0.3s;
 }
 
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login h1 {
+  font-size: 30px;
+}
+.login form {
+  display: flex;
+  flex-direction: column;
+}
+.login form input {
+  padding: 10px;
+  width: 20em;
+}
+.login form #email {
+  margin-bottom: 30px;
+}
+.login form #password {
+  margin-bottom: 30px;
+}
+.login form #submit {
+  margin: auto;
+}
+
 .wishlist {
   display: flex;
   flex-direction: column;
@@ -114,6 +140,27 @@ body {
 .wishlist .item-container .item-item #namedesc p {
   margin: 0;
   text-shadow: 1px 1px black;
+}
+
+.wishlist-modal {
+  display: block;
+  position: absolute;
+  top: 50%;
+  align-self: center;
+  width: 20%;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.wishlist-modal #xbtn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+.wishlist-modal .container {
+  display: flex;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=App.css.map */

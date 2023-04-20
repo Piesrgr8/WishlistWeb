@@ -2,10 +2,10 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 
-import amazonlogo from "../assets/media/amazon_icon.png"
-import targetlogo from "../assets/media/target_icon.png"
-import walmartlogo from "../assets/media/walmart_logo.png"
-import unknownlogo from "../assets/media/unknown_item.png"
+import amazonlogo from "../assets/media/amazon_icon.png";
+import targetlogo from "../assets/media/target_icon.png";
+import walmartlogo from "../assets/media/walmart_logo.png";
+import unknownlogo from "../assets/media/unknown_item.png";
 
 export default function Wishlist({getToken}) {
     const [items, setItems] = useState([]);
@@ -35,20 +35,20 @@ export default function Wishlist({getToken}) {
 
     const urlIdent = (url) => {
         if (url === "amazon") {
-            return amazonlogo
+            return amazonlogo;
         } else if (url === "target") {
-            return targetlogo
+            return targetlogo;
         } else if (url === "walmart") {
-            return walmartlogo
+            return walmartlogo;
         } else {
-            return unknownlogo
+            return unknownlogo;
         }
-    }
+    };
 
     return (
         <div className="wishlist">
             <div className="wishlist-banner">
-                <img src={wishlist.url} alt=""/>
+                <img src={wishlist.url} alt="" />
                 <h1>{wishlist.name}</h1>
             </div>
             <div className="item-container">

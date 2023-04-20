@@ -41,12 +41,12 @@ export const { actions } = Bouncer.define('viewUser', (user: User, userToView: U
     .define('deleteWishlist', (user: User, topic: Wishlist) => {
         return user.id === topic.userId
     })
-    .define("updateItem", (user: User, item: Item) => {
-        return user.id === item.userId;
+    .define('updateItem', (user: User, item: Item) => {
+        return user.id === item.userId
     })
-    .define("deleteItem", (user: User, item: Item) => {
-        return user.id === item.userId;
-    });
+    .define('deleteItem', (user: User, item: Item) => {
+        return user.id === item.userId
+    })
 
 /*
 |--------------------------------------------------------------------------
