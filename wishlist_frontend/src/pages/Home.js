@@ -15,18 +15,47 @@ export default function Home({getToken}) {
             .then((e) => setWishlists(e.data));
     }, [getToken]);
 
+    const submitForm = () => {
+        const form = document.querySelector("form");
+        if (form) {
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const formData = new FormData(form);
+                axios.post("http://localhost:3333/wishlists", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        "Authorization": `Bearer ${getToken.token}`
+                    },
+                }).then((res) => {
+                    console.log(res);
+                }).catch((err) => {
+                    console.log(err);
+                })
+            })
+        }
+    }
+
     const WishlistModal = () => {
         return (
             <div className="wishlist-modal">
                 <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setModalToggle(false)} />
                 <div className="container">
                     <form>
-                        <label>Name:</label>
-                        <input type="text" />
-                        <label>Banner Link:</label>
-                        <input type="text" />
-                        <label>Description:</label>
-                        <input type="text" />
+                        <div>
+                            <label>Name:</label>
+                            <input type="text" name="name"/>
+                        </div>
+                        <div>
+                           <label>Banner Link:</label>
+                            <input type="text" name="url"/> 
+                        </div>
+                        <div>
+                            <label>Description:</label>
+                            <input type="text" name="desc"/>  
+                        </div>
+                        <div>
+                            <button onClick={submitForm()}>Create Wishlist</button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -144,7 +144,7 @@ body {
   position: absolute;
   top: 50%;
   align-self: center;
-  width: 20%;
+  width: 30%;
   padding: 20px;
   background-color: white;
   border: 1px solid black;
@@ -158,6 +158,29 @@ body {
 .wishlist-modal .container {
   display: flex;
   justify-content: center;
+}
+.wishlist-modal .container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.wishlist-modal .container form div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  padding: 10px;
+}
+.wishlist-modal .container form div label {
+  width: 30%;
+  display: flex;
+  margin-right: 10px;
+  justify-content: flex-end;
+}
+.wishlist-modal .container form div input {
+  width: 60%;
+  padding: 5px;
 }
 
 /*# sourceMappingURL=App.css.map */
