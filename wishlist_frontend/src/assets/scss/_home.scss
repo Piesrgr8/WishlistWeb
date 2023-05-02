@@ -3,8 +3,15 @@
     flex-direction: column;
     .wishlist-lists {
         display: grid;
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: 0;
+        width: 70vw;
+        margin: 0 auto;
         justify-content: space-evenly;
+        a {
+            display: flex;
+            justify-content: center;
+        }
         .wishlist-item {
             display: flex;
             justify-content: center;

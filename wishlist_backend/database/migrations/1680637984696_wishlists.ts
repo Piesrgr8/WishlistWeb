@@ -4,14 +4,14 @@ export default class extends BaseSchema {
     protected tableName = 'wishlists'
 
     public async up() {
-        this.schema.createTable(this.tableName, (table) => {
+        this.schema.alterTable(this.tableName, (table) => {
             //create an auto incremented id
             table.increments('id')
             //create a name column
             table.string('name').unique().notNullable()
-            table.string('url').unique()
+            table.string('url').nullable()
             //create a column for description
-            table.text('description').notNullable()
+            table.text('description').nullable()
             //create a reference to the user table
             table
                 .integer('user_id')

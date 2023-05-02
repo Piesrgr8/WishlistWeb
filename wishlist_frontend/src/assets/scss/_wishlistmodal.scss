@@ -1,13 +1,24 @@
 .wishlist-modal {
-    display: block;
-    position: absolute;
-    top: 50%;
-    align-self: center;
-    width: 30%;
-    padding: 20px;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    // display: block;
+    // position: absolute;
+    // top: 50%;
+    // align-self: center;
+    // width: 30%;
+    // padding: 20px;
+    // background-color: white;
+    // border: 1px solid black;
+    // border-radius: 5px;
     #xbtn {
         position: absolute;
         top: 15px;
@@ -16,6 +27,7 @@
     .container {
         display: flex;
         justify-content: center;
+        background-color: #fff;
         form {
             display: flex;
             flex-direction: column;
