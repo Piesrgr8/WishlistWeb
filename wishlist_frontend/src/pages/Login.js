@@ -17,11 +17,15 @@ export default function Login({setToken}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await loginUser({
-            email,
-            password,
-        });
-        setToken(token);
+        try {
+            const token = await loginUser({
+                email,
+                password,
+            });
+            setToken(token);
+        } catch {
+            alert("Cannot login.")
+        }
     };
 
     return (
@@ -29,9 +33,9 @@ export default function Login({setToken}) {
             <h1>LOGIN</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email:</label>
-                <input id="email" type="email" onChange={(e) => setUsername(e.target.value)} />
+                <input id="email" type="email" onChange={(e) => setUsername(e.target.value)} required/>
                 <label htmlFor="password">Password:</label>
-                <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} />
+                <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} required/>
                 <input id="submit" type="submit" value="Login" />
             </form>
         </div>

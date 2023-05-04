@@ -1,6 +1,19 @@
 .home {
     display: flex;
     flex-direction: column;
+    transition-duration: 0.3s;
+    .home-title {
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        margin: auto;
+        h1 {
+
+        }
+        button {
+
+        }
+    }
     .wishlist-lists {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -12,32 +25,36 @@
             display: flex;
             justify-content: center;
         }
-        .wishlist-item {
+        .wishlist-cont {
             display: flex;
             justify-content: center;
             margin: 40px 0;
-            align-items: flex-end;
-            width: 300px;
-            height: 250px;
-
-            img {
-                width: inherit;
-                height: inherit;
-            }
-            #namedesc {
-                position: absolute;
-                width: inherit;
-                color: white;
-                background: rgba($color: #000000, $alpha: 0.3);
-
-                h2 {
-                    margin: 0;
-                    text-shadow: 1px 1px black;
+            .wishlist-item {
+                display: flex;
+                align-items: flex-end;
+                width: 300px;
+                height: 250px;
+                img {
+                    width: inherit;
+                    height: inherit;
                 }
+                #namedesc {
+                    position: absolute;
+                    width: inherit;
+                    color: white;
+                    background: rgba($color: #000000, $alpha: 0.3);
+                    transition-duration: 0.3s;
+                    h2 {
+                        margin: 0;
+                        text-shadow: 1px 1px black;
+                        transition-duration: 0.3s;
+                    }
 
-                p {
-                    margin: 0;
-                    text-shadow: 1px 1px black;
+                    p {
+                        margin: 0;
+                        text-shadow: 1px 1px black;
+                        transition-duration: 0.3s;
+                    }
                 }
             }
         }

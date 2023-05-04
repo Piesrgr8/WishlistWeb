@@ -1,12 +1,14 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {faX} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Footer from "../components/Footer";
 
 export default function Home({getToken}) {
     const [wishlists, setWishlists] = useState([]);
     const tokenString = JSON.parse(sessionStorage.getItem("token"));
+    const nav = useNavigate();
     const [modalToggle, setModalToggle] = useState(false);
 
     const [name, setName] = useState('')
@@ -31,8 +33,9 @@ export default function Home({getToken}) {
                 "Authorization": `Bearer ${getToken.token}`
             },
         }).then((res) => {
-            res.preventDefault()
             console.log(res);
+            setModalToggle(false);
+            nav(`/wishlist/${res.data.id}`)
         }).catch((err) => {
             console.log(err);
         })
@@ -41,12 +44,12 @@ export default function Home({getToken}) {
     const WishlistModal = () => {
         return (
             <div className="wishlist-modal">
-                <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setModalToggle(false)} />
                 <div className="container">
+                <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setModalToggle(false)} />
                     <form onSubmit={submitForm}>
                         <div>
                             <label>Name:</label>
-                            <input type="text" name="name" onChange={nameChange}/>
+                            <input type="text" name="name" onChange={nameChange} required/>
                         </div>
                         <div>
                            <label>Banner Link:</label>
@@ -67,29 +70,34 @@ export default function Home({getToken}) {
 
     return (
         <>
-        <div className="home">
-            <h1>HOME</h1>
-            <button onClick={() => setModalToggle(true)}>Press me!</button>
+        <div className="home" style={modalToggle ? {filter: 'blur(5px)'} : {}}>
+            <div className="home-title">
+                <h1>HOME</h1>
+                <button onClick={() => setModalToggle(true)}>Create Wishlist</button>
+            </div>
             <div className="wishlist-lists">
                 {
                     // eslint-disable-next-line
                     wishlists.map((wishlist) => {
                         if (tokenString.user.id === wishlist.user_id) {
                             return (
-                                <Link to={`/wishlist/${wishlist.id}`} key={wishlist.id} className="dark">
-                                    <li className="wishlist-item">
-                                        <img src={wishlist.url} alt="Wishlist Banner" />
-                                        <span id="namedesc">
-                                            <h2>{wishlist.name}</h2>
-                                            <p>{wishlist.description}</p>
-                                        </span>
-                                    </li>
-                                </Link>
+                                <div className="wishlist-cont" key={wishlist.id}>
+                                    <Link to={`/wishlist/${wishlist.id}`} className="dark">
+                                        <li className="wishlist-item">
+                                            <img src={wishlist.url} alt="Wishlist Banner" />
+                                            <span id="namedesc">
+                                                <h2>{wishlist.name}</h2>
+                                                <p>{wishlist.description}</p>
+                                            </span>
+                                        </li>
+                                    </Link>
+                                </div>
                             );
                         }
                     })
                 }
             </div>
+            <Footer/>
         </div>
         {modalToggle ? WishlistModal() : <div></div>}
         </>
