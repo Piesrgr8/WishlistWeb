@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
-import {faX} from "@fortawesome/free-solid-svg-icons";
+import {faX, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Footer from "../components/Footer";
 
@@ -10,6 +10,7 @@ export default function Home({getToken}) {
     const tokenString = JSON.parse(sessionStorage.getItem("token"));
     const nav = useNavigate();
     const [modalToggle, setModalToggle] = useState(false);
+    const [deleteModalToggle, setDeleteModalToggle] = useState(false);
 
     const [name, setName] = useState('')
     const [desc, setDesc] = useState('')
@@ -41,7 +42,7 @@ export default function Home({getToken}) {
         })
     }
 
-    const WishlistModal = () => {
+    const wishlistModal = () => {
         return (
             <div className="wishlist-modal">
                 <div className="container">
@@ -68,9 +69,26 @@ export default function Home({getToken}) {
         );
     };
 
+    const deleteModal = () => {
+        return(
+            <div className="delete-modal">
+                <div className="container">
+                    <div className="xbutton">
+                        <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setDeleteModalToggle(false)} />
+                    </div>
+                    <h1>Are you sure you want to delete?</h1>
+                    <div className="options">
+                        <button onClick={() => setDeleteModalToggle(false)}>Cancel</button>
+                        <button onClick={() => null}>Delete</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <>
-        <div className="home" style={modalToggle ? {filter: 'blur(5px)'} : {}}>
+        <div className="home" style={modalToggle || deleteModalToggle ? {filter: 'blur(5px)'} : {}}>
             <div className="home-title">
                 <h1>HOME</h1>
                 <button onClick={() => setModalToggle(true)}>Create Wishlist</button>
@@ -82,6 +100,9 @@ export default function Home({getToken}) {
                         if (tokenString.user.id === wishlist.user_id) {
                             return (
                                 <div className="wishlist-cont" key={wishlist.id}>
+                                    <div className="wishlist-trash">
+                                        <FontAwesomeIcon id="tbtn" icon={faTrash} onClick={() => setDeleteModalToggle(true)} />
+                                    </div>
                                     <Link to={`/wishlist/${wishlist.id}`} className="dark">
                                         <li className="wishlist-item">
                                             <img src={wishlist.url} alt="Wishlist Banner" />
@@ -99,7 +120,8 @@ export default function Home({getToken}) {
             </div>
             <Footer/>
         </div>
-        {modalToggle ? WishlistModal() : <div></div>}
+        {deleteModalToggle ? deleteModal() : <div></div>}
+        {modalToggle ? wishlistModal() : <div></div>}
         </>
     );
 }

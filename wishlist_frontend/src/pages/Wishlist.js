@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Link, useParams, useNavigate} from "react-router-dom";
 
-import {faTrash, faX} from "@fortawesome/free-solid-svg-icons";
+import {faX, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import amazonlogo from "../assets/media/amazon_icon.png";
@@ -16,6 +16,15 @@ export default function Wishlist({getToken}) {
     const {id} = useParams();
 
     const [modalToggle, setModalToggle] = useState(false);
+    const [itemModalToggle, setItemModalToggle] = useState(false);
+
+    const [name, setName] = useState('')
+    const [desc, setDesc] = useState('')
+    const [url, setUrl] = useState('')
+
+    const nameChange = (e) => {setName(e.target.value)}
+    const descChange = (e) => {setDesc(e.target.value)}
+    const urlChange = (e) => {setUrl(e.target.value)}
 
     useEffect(() => {
         axios
@@ -61,13 +70,14 @@ export default function Wishlist({getToken}) {
 
     const submitForm = (event) => {
         event.preventDefault()
-        axios.delete(`http://localhost:3333/wishlists/${wishlist.id}`, {
+        axios.post("http://localhost:3333/items", { name: name, wishlistId: id, desc: desc, url: url}, {
             headers: {
+                "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${getToken.token}`
             },
         }).then((res) => {
             console.log(res);
-            goBack()
+            setItemModalToggle(false);
         }).catch((err) => {
             console.log(err);
         })
@@ -76,13 +86,44 @@ export default function Wishlist({getToken}) {
     const deleteModal = () => {
         return(
             <div className="delete-modal">
-                <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setModalToggle(false)} />
                 <div className="container">
-                    <h1>Are you sure you want to delete?</h1>
-                    <div>
-                        <button onClick={() => setModalToggle(false)}>Cancel</button>
-                        <button onClick={submitForm}>Delete</button>
+                    <div className="xbutton">
+                        <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setModalToggle(false)} />
                     </div>
+                    <h1>Are you sure you want to delete?</h1>
+                    <div className="options">
+                        <button onClick={() => setModalToggle(false)}>Cancel</button>
+                        <button onClick={() => null}>Delete</button>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    const itemModal = () => {
+        return(
+            <div className="item-modal">
+                <div className="container">
+                <div className="xbutton">
+                    <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setItemModalToggle(false)} />
+                </div>
+                <form onSubmit={submitForm}>
+                        <div>
+                            <label>Name:</label>
+                            <input type="text" name="name" onChange={nameChange} required/>
+                        </div>
+                        <div>
+                           <label>Item Link:</label>
+                            <input type="text" name="url" onChange={urlChange}/> 
+                        </div>
+                        <div>
+                            <label>Description:</label>
+                            <input type="text" name="description" onChange={descChange}/>  
+                        </div>
+                        <div>
+                            <button type='submit'>Create Item</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         )
@@ -93,7 +134,10 @@ export default function Wishlist({getToken}) {
         <div className="wishlist">
             <div className="wishlist-banner" style={{backgroundImage: `url('${bannerUrl()}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
                 <h1>{wishlist.name}</h1>
-                <FontAwesomeIcon id="tbtn" icon={faTrash} onClick={() => setModalToggle(true)} />
+                <FontAwesomeIcon id="tbtn" icon={faArrowLeft} onClick={() => goBack()} />
+            </div>
+            <div className="options">
+                <button onClick={() => setItemModalToggle(true)}>New Item</button>
             </div>
             <div className="item-container">
                 {items.map((item) => {
@@ -112,6 +156,7 @@ export default function Wishlist({getToken}) {
             </div>
         </div>
         {modalToggle ? deleteModal() : <div></div>}
+        {itemModalToggle ? itemModal() : <div></div>}
         </> 
     );
 }
