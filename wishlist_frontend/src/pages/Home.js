@@ -12,13 +12,19 @@ export default function Home({getToken}) {
     const [modalToggle, setModalToggle] = useState(false);
     const [deleteModalToggle, setDeleteModalToggle] = useState(false);
 
-    const [name, setName] = useState('')
-    const [desc, setDesc] = useState('')
-    const [url, setUrl] = useState('')
+    const [name, setName] = useState("");
+    const [desc, setDesc] = useState("");
+    const [url, setUrl] = useState("");
 
-    const nameChange = (e) => {setName(e.target.value)}
-    const descChange = (e) => {setDesc(e.target.value)}
-    const urlChange = (e) => {setUrl(e.target.value)}
+    const nameChange = (e) => {
+        setName(e.target.value);
+    };
+    const descChange = (e) => {
+        setDesc(e.target.value);
+    };
+    const urlChange = (e) => {
+        setUrl(e.target.value);
+    };
 
     useEffect(() => {
         axios
@@ -27,41 +33,48 @@ export default function Home({getToken}) {
     }, [getToken]);
 
     const submitForm = (event) => {
-        event.preventDefault()
-        axios.post("http://localhost:3333/wishlists", { name: name, description: desc, url: url}, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": `Bearer ${getToken.token}`
-            },
-        }).then((res) => {
-            console.log(res);
-            setModalToggle(false);
-            nav(`/wishlist/${res.data.id}`)
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
+        event.preventDefault();
+        axios
+            .post(
+                "http://localhost:3333/wishlists",
+                {name: name, description: desc, url: url},
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${getToken.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                console.log(res);
+                setModalToggle(false);
+                nav(`/wishlist/${res.data.id}`);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     const wishlistModal = () => {
         return (
             <div className="wishlist-modal">
                 <div className="container">
-                <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setModalToggle(false)} />
+                    <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setModalToggle(false)} />
                     <form onSubmit={submitForm}>
                         <div>
                             <label>Name:</label>
-                            <input type="text" name="name" onChange={nameChange} required/>
+                            <input type="text" name="name" onChange={nameChange} required />
                         </div>
                         <div>
-                           <label>Banner Link:</label>
-                            <input type="text" name="url" onChange={urlChange}/> 
+                            <label>Banner Link:</label>
+                            <input type="text" name="url" onChange={urlChange} />
                         </div>
                         <div>
                             <label>Description:</label>
-                            <input type="text" name="description" onChange={descChange}/>  
+                            <input type="text" name="description" onChange={descChange} />
                         </div>
                         <div>
-                            <button type='submit'>Create Wishlist</button>
+                            <button type="submit">Create Wishlist</button>
                         </div>
                     </form>
                 </div>
@@ -70,7 +83,7 @@ export default function Home({getToken}) {
     };
 
     const deleteModal = () => {
-        return(
+        return (
             <div className="delete-modal">
                 <div className="container">
                     <div className="xbutton">
@@ -83,45 +96,49 @@ export default function Home({getToken}) {
                     </div>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <>
-        <div className="home" style={modalToggle || deleteModalToggle ? {filter: 'blur(5px)'} : {}}>
-            <div className="home-title">
-                <h1>HOME</h1>
-                <button onClick={() => setModalToggle(true)}>Create Wishlist</button>
-            </div>
-            <div className="wishlist-lists">
-                {
-                    // eslint-disable-next-line
-                    wishlists.map((wishlist) => {
-                        if (tokenString.user.id === wishlist.user_id) {
-                            return (
-                                <div className="wishlist-cont" key={wishlist.id}>
-                                    <div className="wishlist-trash">
-                                        <FontAwesomeIcon id="tbtn" icon={faTrash} onClick={() => setDeleteModalToggle(true)} />
+            <div className="home" style={modalToggle || deleteModalToggle ? {filter: "blur(5px)"} : {}}>
+                <div className="home-title">
+                    <h1>Welcome Home!</h1>
+                    <button onClick={() => setModalToggle(true)}>Create Wishlist</button>
+                </div>
+                <div className="wishlist-lists">
+                    {
+                        // eslint-disable-next-line
+                        wishlists.map((wishlist) => {
+                            if (tokenString.user.id === wishlist.user_id) {
+                                return (
+                                    <div className="wishlist-cont" key={wishlist.id}>
+                                        <div className="wishlist-trash">
+                                            <FontAwesomeIcon
+                                                id="tbtn"
+                                                icon={faTrash}
+                                                onClick={() => setDeleteModalToggle(true)}
+                                            />
+                                        </div>
+                                        <Link to={`/wishlist/${wishlist.id}`} className="dark">
+                                            <li className="wishlist-item">
+                                                <img src={wishlist.url} alt="Wishlist Banner" />
+                                                <span id="namedesc">
+                                                    <h2>{wishlist.name}</h2>
+                                                    <p>{wishlist.description}</p>
+                                                </span>
+                                            </li>
+                                        </Link>
                                     </div>
-                                    <Link to={`/wishlist/${wishlist.id}`} className="dark">
-                                        <li className="wishlist-item">
-                                            <img src={wishlist.url} alt="Wishlist Banner" />
-                                            <span id="namedesc">
-                                                <h2>{wishlist.name}</h2>
-                                                <p>{wishlist.description}</p>
-                                            </span>
-                                        </li>
-                                    </Link>
-                                </div>
-                            );
-                        }
-                    })
-                }
+                                );
+                            }
+                        })
+                    }
+                </div>
+                <Footer />
             </div>
-            <Footer/>
-        </div>
-        {deleteModalToggle ? deleteModal() : <div></div>}
-        {modalToggle ? wishlistModal() : <div></div>}
+            {deleteModalToggle ? deleteModal() : <div></div>}
+            {modalToggle ? wishlistModal() : <div></div>}
         </>
     );
 }

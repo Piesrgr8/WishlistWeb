@@ -1,297 +1,298 @@
 body {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-decoration: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+        "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .delete-modal {
-  display: block; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  transition-duration: 0.3s;
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    transition-duration: 0.3s;
 }
 .delete-modal .container {
-  display: flex;
-  background-color: #fff;
-  width: 33%;
-  margin: auto;
-  flex-direction: column;
+    display: flex;
+    background-color: #fff;
+    width: 33%;
+    margin: auto;
+    flex-direction: column;
 }
 .delete-modal .container .xbutton {
-  display: none;
+    display: none;
 }
 .delete-modal .container .xbutton #xbtn {
-  position: absolute;
-  margin: 20px;
+    position: absolute;
+    margin: 20px;
 }
 .delete-modal .container h1 {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .home {
-  display: flex;
-  flex-direction: column;
-  transition-duration: 0.3s;
+    display: flex;
+    flex-direction: column;
+    transition-duration: 0.3s;
 }
 .home .home-title {
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: auto;
 }
 .home .wishlist-lists {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 0;
-  width: 70vw;
-  margin: 0 auto;
-  justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 0;
+    width: 70vw;
+    margin: 0 auto;
+    justify-content: space-evenly;
 }
 .home .wishlist-lists a {
-  display: flex;
+    display: flex;
 }
 .home .wishlist-lists .wishlist-cont {
-  display: flex;
-  justify-content: center;
-  margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
 }
 .home .wishlist-lists .wishlist-cont .wishlist-trash #tbtn {
-  position: absolute;
-  margin: 15px;
-  scale: 1.3;
-  filter: drop-shadow(0px 0px 2px white);
+    position: absolute;
+    margin: 15px;
+    scale: 1.3;
+    filter: drop-shadow(0px 0px 2px white);
 }
 .home .wishlist-lists .wishlist-cont .wishlist-item {
-  display: flex;
-  align-items: flex-end;
-  width: 300px;
-  height: 250px;
+    display: flex;
+    align-items: flex-end;
+    width: 300px;
+    height: 250px;
 }
 .home .wishlist-lists .wishlist-cont .wishlist-item img {
-  width: inherit;
-  height: inherit;
+    width: inherit;
+    height: inherit;
 }
 .home .wishlist-lists .wishlist-cont .wishlist-item #namedesc {
-  position: absolute;
-  width: inherit;
-  color: white;
-  background: rgba(0, 0, 0, 0.3);
-  transition-duration: 0.3s;
+    position: absolute;
+    width: inherit;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
+    transition-duration: 0.3s;
 }
 .home .wishlist-lists .wishlist-cont .wishlist-item #namedesc h2 {
-  margin: 0;
-  text-shadow: 1px 1px black;
-  transition-duration: 0.3s;
+    margin: 0;
+    text-shadow: 1px 1px black;
+    transition-duration: 0.3s;
 }
 .home .wishlist-lists .wishlist-cont .wishlist-item #namedesc p {
-  margin: 0;
-  text-shadow: 1px 1px black;
-  transition-duration: 0.3s;
+    margin: 0;
+    text-shadow: 1px 1px black;
+    transition-duration: 0.3s;
 }
 .home .wishlist-lists .wishlist-item:hover #namedesc {
-  position: absolute;
-  width: inherit;
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
-  transition-duration: 0.3s;
+    position: absolute;
+    width: inherit;
+    color: white;
+    background: rgba(0, 0, 0, 0.7);
+    transition-duration: 0.3s;
 }
 .home .wishlist-lists .wishlist-item:hover #namedesc h2 {
-  margin: 20px 0;
-  text-shadow: 1px 1px black;
-  transition-duration: 0.3s;
+    margin: 20px 0;
+    text-shadow: 1px 1px black;
+    transition-duration: 0.3s;
 }
 .home .wishlist-lists .wishlist-item:hover #namedesc p {
-  margin: 20px 0;
-  text-shadow: 1px 1px black;
-  transition-duration: 0.3s;
+    margin: 20px 0;
+    text-shadow: 1px 1px black;
+    transition-duration: 0.3s;
 }
 
 .item-modal {
-  display: block; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  transition-duration: 0.3s;
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    transition-duration: 0.3s;
 }
 .item-modal .container {
-  display: flex;
-  background-color: #fff;
-  width: 33%;
-  margin: auto;
+    display: flex;
+    background-color: #fff;
+    width: 33%;
+    margin: auto;
 }
 .item-modal .container .xbutton #xbtn {
-  position: absolute;
-  margin: 20px;
+    position: absolute;
+    margin: 20px;
 }
 .item-modal .container form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 .item-modal .container form div {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: center;
 }
 .item-modal .container form div label {
-  display: flex;
-  justify-content: flex-end;
-  margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
 }
 .item-modal .container form div input {
-  width: 60%;
-  padding: 5px;
+    width: 60%;
+    padding: 5px;
 }
 
 .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .login h1 {
-  font-size: 30px;
+    font-size: 30px;
 }
 .login form {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 .login form input {
-  padding: 10px;
-  width: 20em;
+    padding: 10px;
+    width: 20em;
 }
 .login form #email {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 .login form #password {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 .login form #submit {
-  margin: auto;
+    margin: auto;
 }
 
 .wishlist {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 .wishlist .wishlist-banner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
 }
 .wishlist .wishlist-banner h1 {
-  position: absolute;
-  text-shadow: 2px 2px black;
-  color: white;
+    position: absolute;
+    text-shadow: 2px 2px black;
+    color: white;
 }
 .wishlist .wishlist-banner #tbtn {
-  position: absolute;
-  scale: 5;
-  top: 0;
-  margin: 40px;
-  left: 0;
-  filter: drop-shadow(0px 0px 3px white);
+    position: absolute;
+    scale: 5;
+    top: 0;
+    margin: 40px;
+    left: 0;
+    filter: drop-shadow(0px 0px 3px white);
 }
 .wishlist .item-container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: space-evenly;
 }
 .wishlist .item-container .item-item {
-  display: flex;
-  justify-content: center;
-  margin: 40px 0;
-  align-items: flex-end;
-  width: 250px;
-  height: 250px;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+    align-items: flex-end;
+    width: 250px;
+    height: 250px;
 }
 .wishlist .item-container .item-item img {
-  width: inherit;
-  height: inherit;
+    width: inherit;
+    height: inherit;
 }
 .wishlist .item-container .item-item #namedesc {
-  position: absolute;
-  width: inherit;
-  color: white;
-  background: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    width: inherit;
+    color: white;
+    background: rgba(0, 0, 0, 0.3);
 }
 .wishlist .item-container .item-item #namedesc h2 {
-  margin: 0;
-  text-shadow: 1px 1px black;
+    margin: 0;
+    text-shadow: 1px 1px black;
 }
 .wishlist .item-container .item-item #namedesc p {
-  margin: 0;
-  text-shadow: 1px 1px black;
+    margin: 0;
+    text-shadow: 1px 1px black;
 }
 
 .wishlist-modal {
-  display: block; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  transition-duration: 0.3s;
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    transition-duration: 0.3s;
 }
 .wishlist-modal #xbtn {
-  position: absolute;
-  margin: 20px;
+    position: absolute;
+    margin: 20px;
 }
 .wishlist-modal .container {
-  display: flex;
-  background-color: #fff;
-  width: 33%;
-  margin: auto;
+    display: flex;
+    background-color: #fff;
+    width: 33%;
+    margin: auto;
 }
 .wishlist-modal .container form {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 .wishlist-modal .container form div {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: center;
 }
 .wishlist-modal .container form div label {
-  display: flex;
-  justify-content: flex-end;
-  margin: auto;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
 }
 .wishlist-modal .container form div input {
-  width: 60%;
-  padding: 5px;
+    width: 60%;
+    padding: 5px;
 }
 
 /*# sourceMappingURL=App.css.map */

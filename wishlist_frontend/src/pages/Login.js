@@ -8,7 +8,13 @@ async function loginUser(credentials) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(credentials),
-    }).then((data) => data.json());
+    }).then(async (response) => {
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.error || "Login Failed");
+        }
+        return data;
+    });
 }
 
 export default function Login({setToken}) {
@@ -23,8 +29,8 @@ export default function Login({setToken}) {
                 password,
             });
             setToken(token);
-        } catch {
-            alert("Cannot login.")
+        } catch (err) {
+            alert(err);
         }
     };
 
@@ -33,9 +39,9 @@ export default function Login({setToken}) {
             <h1>LOGIN</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">Email:</label>
-                <input id="email" type="email" onChange={(e) => setUsername(e.target.value)} required/>
+                <input id="email" type="email" onChange={(e) => setUsername(e.target.value)} required />
                 <label htmlFor="password">Password:</label>
-                <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} required/>
+                <input id="password" type="password" onChange={(e) => setPassword(e.target.value)} required />
                 <input id="submit" type="submit" value="Login" />
             </form>
         </div>

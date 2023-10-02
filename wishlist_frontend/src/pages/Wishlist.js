@@ -18,13 +18,19 @@ export default function Wishlist({getToken}) {
     const [modalToggle, setModalToggle] = useState(false);
     const [itemModalToggle, setItemModalToggle] = useState(false);
 
-    const [name, setName] = useState('')
-    const [desc, setDesc] = useState('')
-    const [url, setUrl] = useState('')
+    const [name, setName] = useState("");
+    const [desc, setDesc] = useState("");
+    const [url, setUrl] = useState("");
 
-    const nameChange = (e) => {setName(e.target.value)}
-    const descChange = (e) => {setDesc(e.target.value)}
-    const urlChange = (e) => {setUrl(e.target.value)}
+    const nameChange = (e) => {
+        setName(e.target.value);
+    };
+    const descChange = (e) => {
+        setDesc(e.target.value);
+    };
+    const urlChange = (e) => {
+        setUrl(e.target.value);
+    };
 
     useEffect(() => {
         axios
@@ -60,31 +66,38 @@ export default function Wishlist({getToken}) {
     };
 
     const bannerUrl = () => {
-        return wishlist.url
-    }
+        return wishlist.url;
+    };
 
     const navigate = useNavigate();
-	const goBack = () => {
-		navigate(-1);
-	}
+    const goBack = () => {
+        navigate(-1);
+    };
 
     const submitForm = (event) => {
-        event.preventDefault()
-        axios.post("http://localhost:3333/items", { name: name, wishlistId: id, desc: desc, url: url}, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-                "Authorization": `Bearer ${getToken.token}`
-            },
-        }).then((res) => {
-            console.log(res);
-            setItemModalToggle(false);
-        }).catch((err) => {
-            console.log(err);
-        })
-    }
+        event.preventDefault();
+        axios
+            .post(
+                "http://localhost:3333/items",
+                {name: name, wishlistId: id, desc: desc, url: url},
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: `Bearer ${getToken.token}`,
+                    },
+                }
+            )
+            .then((res) => {
+                console.log(res);
+                setItemModalToggle(false);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     const deleteModal = () => {
-        return(
+        return (
             <div className="delete-modal">
                 <div className="container">
                     <div className="xbutton">
@@ -97,66 +110,73 @@ export default function Wishlist({getToken}) {
                     </div>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     const itemModal = () => {
-        return(
+        return (
             <div className="item-modal">
                 <div className="container">
-                <div className="xbutton">
-                    <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setItemModalToggle(false)} />
-                </div>
-                <form onSubmit={submitForm}>
+                    <div className="xbutton">
+                        <FontAwesomeIcon id="xbtn" icon={faX} onClick={() => setItemModalToggle(false)} />
+                    </div>
+                    <form onSubmit={submitForm}>
                         <div>
                             <label>Name:</label>
-                            <input type="text" name="name" onChange={nameChange} required/>
+                            <input type="text" name="name" onChange={nameChange} required />
                         </div>
                         <div>
-                           <label>Item Link:</label>
-                            <input type="text" name="url" onChange={urlChange}/> 
+                            <label>Item Link:</label>
+                            <input type="text" name="url" onChange={urlChange} />
                         </div>
                         <div>
                             <label>Description:</label>
-                            <input type="text" name="description" onChange={descChange}/>  
+                            <input type="text" name="description" onChange={descChange} />
                         </div>
                         <div>
-                            <button type='submit'>Create Item</button>
+                            <button type="submit">Create Item</button>
                         </div>
                     </form>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <>
-        <div className="wishlist">
-            <div className="wishlist-banner" style={{backgroundImage: `url('${bannerUrl()}')`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
-                <h1>{wishlist.name}</h1>
-                <FontAwesomeIcon id="tbtn" icon={faArrowLeft} onClick={() => goBack()} />
+            <div className="wishlist">
+                <div
+                    className="wishlist-banner"
+                    style={{
+                        backgroundImage: `url('${bannerUrl()}')`,
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
+                    }}
+                >
+                    <h1>{wishlist.name}</h1>
+                    <FontAwesomeIcon id="tbtn" icon={faArrowLeft} onClick={() => goBack()} />
+                </div>
+                <div className="options">
+                    <button onClick={() => setItemModalToggle(true)}>New Item</button>
+                </div>
+                <div className="item-container">
+                    {items.map((item) => {
+                        return (
+                            <Link to={item.url} key={item.id}>
+                                <li className="item-item">
+                                    <img src={urlIdent(item.url)} alt="What You are Getting" />
+                                    <span id="namedesc">
+                                        <h2>{item.name}</h2>
+                                        <p>{item.desc}</p>
+                                    </span>
+                                </li>
+                            </Link>
+                        );
+                    })}
+                </div>
             </div>
-            <div className="options">
-                <button onClick={() => setItemModalToggle(true)}>New Item</button>
-            </div>
-            <div className="item-container">
-                {items.map((item) => {
-                    return (
-                        <Link to={item.url} key={item.id}>
-                            <li className="item-item">
-                                <img src={urlIdent(item.url)} alt="What You are Getting" />
-                                <span id="namedesc">
-                                    <h2>{item.name}</h2>
-                                    <p>{item.desc}</p>
-                                </span>
-                            </li>
-                        </Link>
-                    );
-                })}
-            </div>
-        </div>
-        {modalToggle ? deleteModal() : <div></div>}
-        {itemModalToggle ? itemModal() : <div></div>}
-        </> 
+            {modalToggle ? deleteModal() : <div></div>}
+            {itemModalToggle ? itemModal() : <div></div>}
+        </>
     );
 }
