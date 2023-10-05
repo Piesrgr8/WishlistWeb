@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 
 export default function Footer() {
     const tokenString = JSON.parse(sessionStorage.getItem("token"));
@@ -15,7 +15,7 @@ export default function Footer() {
                 </p>
             );
         } else {
-            return <p>Not Logged In</p>;
+            return <Navigate to="/login"/>
         }
     };
 

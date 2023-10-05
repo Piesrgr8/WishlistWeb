@@ -41,6 +41,13 @@ body {
     position: absolute;
     margin: 20px;
 }
+.delete-modal .container .options {
+  margin-bottom: 15px;
+}
+.delete-modal .container .options button {
+  margin: 10px;
+  padding: 10px;
+}
 .delete-modal .container h1 {
     font-size: 20px;
 }
